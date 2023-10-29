@@ -52,10 +52,3 @@ export function useUserTradeToken(): string {
 export function useUserLpSlippage(): number {
   return useSelector<AppState, AppState['user']['userLpSlippage']>((state) => state.user.userLpSlippage)
 }
-
-export function useUserH5TradingViewPeriod() {
-  return useSelector<AppState, AppState['user']['userH5TradingViewPeriod']>((state) => state.user.userH5TradingViewPeriod)
-}
-export function useUserH5TradingViewExpand() {
-  return useSelector<AppState, AppState['user']['userH5TradingViewExpand']>((state) => state.user.userH5TradingViewExpand)
-}

@@ -1,9 +1,9 @@
 import { Provider } from '@ethersproject/providers'
 import BigNumber from 'bignumber.js'
-import { GAS_PRICE_ADJUSTMENT_MAP, MAX_GAS_PRICE_MAP, SuppportedChainId } from 'config/chains'
+import { GAS_PRICE_ADJUSTMENT_MAP, MAX_GAS_PRICE_MAP, SupportedChainId } from 'config/chains'
 import { bigNumberify } from '../number/numbers'
 
-export async function setGasPrice(txnOpts: any, provider: Provider, chainId: SuppportedChainId) {
+export async function setGasPrice(txnOpts: any, provider: Provider, chainId: SupportedChainId) {
   let maxGasPrice = BigNumber(MAX_GAS_PRICE_MAP[chainId])
   const premium = GAS_PRICE_ADJUSTMENT_MAP[chainId] || bigNumberify(0)
 

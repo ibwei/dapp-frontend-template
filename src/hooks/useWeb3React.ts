@@ -89,11 +89,38 @@ export const useActiveWeb3React = () => {
     [web3React.account, chain?.id, open, switchNetworkAsync]
   )
 
+  const addTokenToWallet = useCallback(
+    async (token: { address: string; symbol: string; decimals: number }) => {
+      try {
+        if (token) {
+          await walletClient?.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: token?.address,
+                symbol: token?.symbol.toUpperCase(),
+                decimals: token?.decimals ?? 18,
+              },
+            },
+          })
+          return true
+        }
+        return false
+      } catch (err: any) {
+        console.log(err)
+        return false
+      }
+    },
+    [walletClient]
+  )
+
   return {
     publicClient,
     walletClient,
-    checkWalletAndNetwork,
     ...web3React,
     switchNetwork,
+    addTokenToWallet,
+    checkWalletAndNetwork,
   }
 }
